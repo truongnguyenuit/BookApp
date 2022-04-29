@@ -1,0 +1,1 @@
+export const formatPrice = (number) => `${number.toLocaleString()}K`;
