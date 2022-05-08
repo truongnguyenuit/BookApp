@@ -17,6 +17,7 @@
     "@react-navigation/native-stack": "^6.6.1",
     "axios": "^0.27.1",
     "expo": "~44.0.0",
+    "expo-linear-gradient": "~11.0.3",
     "expo-status-bar": "~1.2.0",
     "formik": "^2.2.9",
     "react": "17.0.1",
@@ -26,8 +27,10 @@
     "react-native-gesture-handler": "~2.1.0",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "~3.10.1",
+    "react-native-swiper": "^1.6.0",
     "react-native-web": "0.17.1",
-    "react-navigation": "^4.4.4"
+    "react-navigation": "^4.4.4",
+    "swiper": "^8.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
