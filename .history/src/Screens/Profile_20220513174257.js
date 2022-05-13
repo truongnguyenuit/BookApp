@@ -4,15 +4,12 @@ import { Title, Card, Button } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient'
 import { MaterialIcons, Entypo, FontAwesome5 } from '@expo/vector-icons';
 import { auth } from '../../firebase';
-function Profile({ navigation })  {
+const Profile = () => {
   const handleSignOut = () => {
     auth
       .signOut()
-      .then(() => {
-        navigation.replace("SignInScreen")
-        
-      })
-      .catch(error => alert(error.message))
+      
+      
   }
   return (
     

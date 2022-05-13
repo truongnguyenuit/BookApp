@@ -12,7 +12,7 @@ function Profile({ navigation })  {
         navigation.replace("SignInScreen")
         
       })
-      .catch(error => alert(error.message))
+      .catch(error)
   }
   return (
     

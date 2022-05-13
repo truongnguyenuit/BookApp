@@ -9,10 +9,9 @@ function Profile({ navigation })  {
     auth
       .signOut()
       .then(() => {
-        navigation.replace("SignInScreen")
         
       })
-      .catch(error => alert(error.message))
+      
   }
   return (
     

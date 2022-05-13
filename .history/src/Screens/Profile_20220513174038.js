@@ -3,19 +3,8 @@ import React from 'react'
 import { Title, Card, Button } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient'
 import { MaterialIcons, Entypo, FontAwesome5 } from '@expo/vector-icons';
-import { auth } from '../../firebase';
-function Profile({ navigation })  {
-  const handleSignOut = () => {
-    auth
-      .signOut()
-      .then(() => {
-        navigation.replace("SignInScreen")
-        
-      })
-      .catch(error => alert(error.message))
-  }
+const Profile = () => {
   return (
-    
     <View style={styles.root}>
       <LinearGradient
         colors={['#ff8c00', 'orange']}
@@ -64,7 +53,7 @@ function Profile({ navigation })  {
         </Button>
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 55, color: '#FF8C00' }}>
-        <Button color="#FF8C00" mode="contained" onPress={handleSignOut}>
+        <Button color="#FF8C00" mode="contained" onpr>
           SIGN OUT
         </Button>
       </View>
