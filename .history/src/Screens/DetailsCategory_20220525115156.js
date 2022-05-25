@@ -86,15 +86,5 @@ const styles = StyleSheet.create({
         // alignItems: 'flex-start',
 
     },
-    titleView: {
-        margin: 10,
-        alignSelf: 'center',
-
-
-    },
-    titleText: {
-        fontWeight: 'bold',
-        fontSize: 20,
-        color: '#FF8C00'
-    }
+    title
 })

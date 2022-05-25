@@ -94,7 +94,6 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontWeight: 'bold',
-        fontSize: 20,
-        color: '#FF8C00'
+        fontSize: '35'
     }
 })

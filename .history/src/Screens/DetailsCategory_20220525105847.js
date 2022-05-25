@@ -5,17 +5,17 @@ import CategoryFilter from '../Components/CategoryFilter';
 import BookOverview from '../Components/BookOverview';
 
 const array1 = [
-    { id: 1, value: "HoChiMinh" },
-    { id: 2, value: "ShangHai" },
-    { id: 3, value: "Seul" },
-    { id: 4, value: "Tokyo" },
-    { id: 5, value: "newyork" },
+    { id : 1, value: "HoChiMinh"} ,
+    { id : 2, value: "ShangHai" },
+    { id : 3, value: "Seul" },
+    { id : 4, value: "Tokyo" },
+    { id : 5, value: "newyork" },
 
 ];
 
 
 const DetailsCategory = ({ route, navigation }) => {
-
+    
 
     const [array, setarray] = useState(array1)
     //array1.push({ id : 4, value: "newyork"});
@@ -36,18 +36,17 @@ const DetailsCategory = ({ route, navigation }) => {
                 </View>
             </LinearGradient>
             {/* quét database, chèn vào array, for array rồi đẩy vào text */}
-            <View style={styles.titleView}>
-                <Text style={styles.titleText}>Category: {categoryy}</Text>
-            </View>
-
+            <Text>category: {categoryy}</Text>
             <View style={styles.imgcontainer}>
                 <CategoryFilter book={categoryy} booksarray={booksArray} setbook={setBooksArray} navigation={navigation} />
+
+
                 {/* <Text>
                     {array.map((localstate, index) => (
                         <Text key={localstate.id}>{localstate.id} {localstate.value} </Text>
                     ))}
                 </Text> */}
-                {/* <TouchableOpacity
+                <TouchableOpacity
                     style={{ backgroundColor: 'orange' }}
                     onPress={() => {
                         //array1.push({id : 9, value : "supro"})
@@ -59,7 +58,10 @@ const DetailsCategory = ({ route, navigation }) => {
                     }}
                 >
                     <Text>   BUTTONNNNN   </Text>
-                </TouchableOpacity> */}
+                </TouchableOpacity>
+
+
+
             </View>
         </View>
     )
@@ -79,22 +81,9 @@ const styles = StyleSheet.create({
 
     },
     imgcontainer: {
-        flex: 1,
-
-        // flexDirection: 'row',
-        // flexWrap: 'wrap',
-        // alignItems: 'flex-start',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'flex-start',
 
     },
-    titleView: {
-        margin: 10,
-        alignSelf: 'center',
-
-
-    },
-    titleText: {
-        fontWeight: 'bold',
-        fontSize: 20,
-        color: '#FF8C00'
-    }
 })

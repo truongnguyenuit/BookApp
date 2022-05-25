@@ -91,10 +91,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
 
 
-    },
-    titleText: {
-        fontWeight: 'bold',
-        fontSize: 20,
-        color: '#FF8C00'
     }
+    titleText
 })

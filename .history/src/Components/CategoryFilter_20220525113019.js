@@ -29,7 +29,6 @@ export default function BookOverview({ navigation, book, booksarray, setbook }) 
     const ReadBookFromDB = async () => {
         const q = query(collection(db, "books"), where("category", "==", book))
         const querySnapshot = await getDocs(q);
-        setarr([])
 
         querySnapshot.forEach((doc) => {
 
@@ -50,7 +49,6 @@ export default function BookOverview({ navigation, book, booksarray, setbook }) 
 
 
         });
-
 
     }
     // {IMG: img, NAME : name, AUTHOR: author,DESCRIPTION: description, CONTENT: content}

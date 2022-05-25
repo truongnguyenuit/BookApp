@@ -37,7 +37,7 @@ const DetailsCategory = ({ route, navigation }) => {
             </LinearGradient>
             {/* quét database, chèn vào array, for array rồi đẩy vào text */}
             <View style={styles.titleView}>
-                <Text style={styles.titleText}>Category: {categoryy}</Text>
+                <Text style={styles.titletext}>Category: {categoryy}</Text>
             </View>
 
             <View style={styles.imgcontainer}>
@@ -86,15 +86,4 @@ const styles = StyleSheet.create({
         // alignItems: 'flex-start',
 
     },
-    titleView: {
-        margin: 10,
-        alignSelf: 'center',
-
-
-    },
-    titleText: {
-        fontWeight: 'bold',
-        fontSize: 20,
-        color: '#FF8C00'
-    }
 })

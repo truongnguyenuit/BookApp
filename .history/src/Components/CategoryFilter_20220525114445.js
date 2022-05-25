@@ -29,7 +29,7 @@ export default function BookOverview({ navigation, book, booksarray, setbook }) 
     const ReadBookFromDB = async () => {
         const q = query(collection(db, "books"), where("category", "==", book))
         const querySnapshot = await getDocs(q);
-        setarr([])
+        setarr
 
         querySnapshot.forEach((doc) => {
 

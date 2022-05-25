@@ -89,12 +89,7 @@ const styles = StyleSheet.create({
     titleView: {
         margin: 10,
         alignSelf: 'center',
+        
 
-
-    },
-    titleText: {
-        fontWeight: 'bold',
-        fontSize: 20,
-        color: '#FF8C00'
     }
 })

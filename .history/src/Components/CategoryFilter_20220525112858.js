@@ -29,7 +29,6 @@ export default function BookOverview({ navigation, book, booksarray, setbook }) 
     const ReadBookFromDB = async () => {
         const q = query(collection(db, "books"), where("category", "==", book))
         const querySnapshot = await getDocs(q);
-        setarr([])
 
         querySnapshot.forEach((doc) => {
 
@@ -51,7 +50,6 @@ export default function BookOverview({ navigation, book, booksarray, setbook }) 
 
         });
 
-
     }
     // {IMG: img, NAME : name, AUTHOR: author,DESCRIPTION: description, CONTENT: content}
     useEffect(() => {
@@ -71,7 +69,7 @@ export default function BookOverview({ navigation, book, booksarray, setbook }) 
                         onPress={() => navigation.navigate('BookDetails', { Img: book.IMG, Name: book.NAME, Author: book.AUTHOR, Description: book.DESCRIPTION, Content: book.CONTENT })}
                     >
                         <Image source={{ url: book.IMG }} style={styles.Coverimg} />
-                        
+                        <Text>{book.NAME}</Text>
                     </TouchableOpacity>
                 ))}
             </View>
@@ -82,9 +80,7 @@ export default function BookOverview({ navigation, book, booksarray, setbook }) 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        alignItems: 'flex-start',
+        flexDirection: 'row'
 
     },
     main_view: {

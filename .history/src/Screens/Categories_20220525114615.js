@@ -43,7 +43,7 @@ const Categories = ({ navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity 
         style={styles.card}
-        onPress={()=> navigation.navigate("DetailsCategory",{categoryy: "Drama", navigation: navigation})}>
+        onPress={()=> navigation.navigate("DetailsCategory",{categoryy: "drama", navigation: navigation})}>
           <View style={styles.cardImgWrapper}>
             <Image
               source={require('../Screens/Images/drama.jpg')}

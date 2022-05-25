@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, Image, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Image } from 'react-native'
 import React, { useEffect, useState } from 'react';
 import { TouchableOpacity } from "react-native-gesture-handler"
 
@@ -29,7 +29,6 @@ export default function BookOverview({ navigation, book, booksarray, setbook }) 
     const ReadBookFromDB = async () => {
         const q = query(collection(db, "books"), where("category", "==", book))
         const querySnapshot = await getDocs(q);
-        setarr([])
 
         querySnapshot.forEach((doc) => {
 
@@ -41,7 +40,7 @@ export default function BookOverview({ navigation, book, booksarray, setbook }) 
             setdescription(description)
             setcontent(content)
 
-            setarr(oldArray => [...oldArray, { IMG: img, NAME: name, AUTHOR: author, DESCRIPTION: description, CONTENT: content }])
+            //setarr(oldArray => [...oldArray,{IMG: img, NAME : name, AUTHOR: author,DESCRIPTION: description, CONTENT: content}])
             //alert({)
             //console.warn();
 
@@ -50,7 +49,6 @@ export default function BookOverview({ navigation, book, booksarray, setbook }) 
 
 
         });
-
 
     }
     // {IMG: img, NAME : name, AUTHOR: author,DESCRIPTION: description, CONTENT: content}
@@ -62,31 +60,26 @@ export default function BookOverview({ navigation, book, booksarray, setbook }) 
 
     // { Img: Img, Name: Name, Author: Author, Description: Description, Content: Content }
     return (
-        <ScrollView>
-            <View style={styles.container}>
-                {arr.map((book) => (
-                    
-                    <TouchableOpacity
-                        TouchableOpacity style={styles.main_view}
-                        onPress={() => navigation.navigate('BookDetails', { Img: book.IMG, Name: book.NAME, Author: book.AUTHOR, Description: book.DESCRIPTION, Content: book.CONTENT })}
-                    >
-                        <Image source={{ url: book.IMG }} style={styles.Coverimg} />
-                        
-                    </TouchableOpacity>
-                ))}
-            </View>
-        </ScrollView>
+        <View>
+
+            {arr.map((book) => (
+                {/* <Text>      {book.AUTHOR}        </Text> */ }
+
+
+
+
+
+                < TouchableOpacity style = { styles.main_view } onPress = {() => navigation.navigate('BookDetails', {Img: Img, Name: Name, Author: Author, Description: Description, Content: Content })}>
+            <Image source={{ url: Img }} style={styles.Coverimg} />
+            <Text></Text>
+        </>
+    ))
+}
+        </View >
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        alignItems: 'flex-start',
-
-    },
     main_view: {
         height: HEIGHT,
         width: screenWidth / 2 - 8,

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, Image, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Image } from 'react-native'
 import React, { useEffect, useState } from 'react';
 import { TouchableOpacity } from "react-native-gesture-handler"
 
@@ -12,12 +12,12 @@ import 'firebase/compat/firestore';
 const HEIGHT = 300, WIDTH = 200;
 const screenWidth = Dimensions.get('window').width;
 
-//const initarray = []
+const array1 = []
 
 export default function BookOverview({ navigation, book, booksarray, setbook }) {
 
-
-    const [arr, setarr] = useState([]);
+    
+    const [arr, setarr] = useState(array1);
 
     const [categoryy, setcategory] = useState('')
     const [Img, setimg] = useState('')
@@ -29,7 +29,6 @@ export default function BookOverview({ navigation, book, booksarray, setbook }) 
     const ReadBookFromDB = async () => {
         const q = query(collection(db, "books"), where("category", "==", book))
         const querySnapshot = await getDocs(q);
-        setarr([])
 
         querySnapshot.forEach((doc) => {
 
@@ -41,16 +40,15 @@ export default function BookOverview({ navigation, book, booksarray, setbook }) 
             setdescription(description)
             setcontent(content)
 
-            setarr(oldArray => [...oldArray, { IMG: img, NAME: name, AUTHOR: author, DESCRIPTION: description, CONTENT: content }])
+            setarr(oldArray => [])
             //alert({)
             //console.warn();
-
+            
             //setarr([...arr,{NAME: doc.id}])
             //setarr(oldArray => [...oldArray,{NAME: doc.id}])
-
+            
 
         });
-
 
     }
     // {IMG: img, NAME : name, AUTHOR: author,DESCRIPTION: description, CONTENT: content}
@@ -60,33 +58,26 @@ export default function BookOverview({ navigation, book, booksarray, setbook }) 
 
 
 
-    // { Img: Img, Name: Name, Author: Author, Description: Description, Content: Content }
+
     return (
-        <ScrollView>
-            <View style={styles.container}>
+        <View>
+            <Text>
                 {arr.map((book) => (
-                    
-                    <TouchableOpacity
-                        TouchableOpacity style={styles.main_view}
-                        onPress={() => navigation.navigate('BookDetails', { Img: book.IMG, Name: book.NAME, Author: book.AUTHOR, Description: book.DESCRIPTION, Content: book.CONTENT })}
-                    >
-                        <Image source={{ url: book.IMG }} style={styles.Coverimg} />
-                        
-                    </TouchableOpacity>
+                    <Text>      {book.NAME}        </Text>
                 ))}
-            </View>
-        </ScrollView>
+                
+
+
+            </Text>
+            <TouchableOpacity style={styles.main_view} onPress={() => navigation.navigate('BookDetails', { Img: Img, Name: Name, Author: Author, Description: Description, Content: Content })}>
+                <Image source={{ url: Img }} style={styles.Coverimg} />
+                <Text></Text>
+            </TouchableOpacity>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        alignItems: 'flex-start',
-
-    },
     main_view: {
         height: HEIGHT,
         width: screenWidth / 2 - 8,
