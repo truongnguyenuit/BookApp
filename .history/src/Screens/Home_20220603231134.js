@@ -53,12 +53,14 @@ const Home = ({ navigation }) => {
 
       //setarr([...arr,{NAME: doc.id}])
       //setarr(oldArray => [...oldArray,{NAME: doc.id}])
+
+      
     });
   }
-
   useEffect(() => {
     ReadBookFromDB()
   }, []);
+
 
   return (
     <View style={styles.mainview}>
@@ -176,11 +178,11 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
 
         </View>
-        
         <Text style={{ fontSize: 28, fontWeight: "bold", alignSelf: 'center', marginBottom: 20, color: 'black', marginTop: 10 }}>Popular Books</Text>
 
         <View style={styles.containerr}>
           {arr.map((book) => (
+
             <TouchableOpacity
               TouchableOpacity style={styles.main_view}
               onPress={() => navigation.navigate('BookDetails', { Img: book.IMG, Name: book.NAME, Author: book.AUTHOR, Description: book.DESCRIPTION, Content: book.CONTENT })}
@@ -188,11 +190,14 @@ const Home = ({ navigation }) => {
               <Image source={{ url: book.IMG }} style={styles.Coverimg} />
 
             </TouchableOpacity>
+
           ))}
         </View>
 
+
       </ScrollView>
     </View>
+
   );
 };
 export default Home;

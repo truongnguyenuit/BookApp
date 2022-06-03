@@ -181,6 +181,7 @@ const Home = ({ navigation }) => {
 
         <View style={styles.containerr}>
           {arr.map((book) => (
+
             <TouchableOpacity
               TouchableOpacity style={styles.main_view}
               onPress={() => navigation.navigate('BookDetails', { Img: book.IMG, Name: book.NAME, Author: book.AUTHOR, Description: book.DESCRIPTION, Content: book.CONTENT })}
@@ -188,11 +189,14 @@ const Home = ({ navigation }) => {
               <Image source={{ url: book.IMG }} style={styles.Coverimg} />
 
             </TouchableOpacity>
+
           ))}
         </View>
 
+
       </ScrollView>
     </View>
+
   );
 };
 export default Home;

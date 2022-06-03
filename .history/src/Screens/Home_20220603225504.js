@@ -7,11 +7,12 @@ import { Entypo, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 
-import { db } from '../../firebase'
-import { collection, addDoc, getDocs, doc, setDoc, query, where } from "firebase/firestore"
+import { db } from "../../firebase";
+import { collection, addDoc, getDocs, doc, setDoc } from "firebase/firestore"
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import { Navigation } from 'swiper';
 
 
 const BooksList = {
@@ -22,43 +23,31 @@ const BooksList = {
 const HEIGHT = 300, WIDTH = 200;
 const screenWidth = Dimensions.get('window').width;
 const Home = ({ navigation }) => {
-  const [arr, setarr] = useState([]);
-
-  const [categoryy, setcategory] = useState('')
-  const [Img, setimg] = useState('')
-  const [Name, setname] = useState('')
-  const [Author, setauthor] = useState('')
-  const [Description, setdescription] = useState('')
-  const [Content, setcontent] = useState('')
-
+  const [img, setimg] = useState('')
+  const [name, setname] = useState('') 
+  const [author, setauthor] = useState('') 
+  const [description, setdescription] = useState('')
+  const [content, setcontent] = useState('')
+  
   const ReadBookFromDB = async () => {
-    const q = query(collection(db, "books"))
-    const querySnapshot = await getDocs(q);
-
-    setarr([])
-
+    const querySnapshot = await getDocs(collection(db, "books"));
     querySnapshot.forEach((doc) => {
-
-      const { category, img, name, author, description, content } = doc.data();
+    if (`${doc.id}`== book) {
+      const { img, name, author, description, content } = doc.data();
       setimg(img)
       setname(name)
       setauthor(author)
       setdescription(description)
       setcontent(content)
-
-      setarr(oldArray => [...oldArray, { IMG: img, NAME: name, AUTHOR: author, DESCRIPTION: description, CONTENT: content }])
-
-      //alert(doc.id)
-      //console.warn();
-
-      //setarr([...arr,{NAME: doc.id}])
-      //setarr(oldArray => [...oldArray,{NAME: doc.id}])
+    }
     });
   }
-
+  
   useEffect(() => {
     ReadBookFromDB()
-  }, []);
+  },[book]);
+
+
 
   return (
     <View style={styles.mainview}>
@@ -67,7 +56,7 @@ const Home = ({ navigation }) => {
         style={{ height: "7%", marginBottom: 10 }}
       >
       </LinearGradient>
-      <ScrollView>
+      <ScrollView style={styles.container}>
         <View style={styles.sliderContainer}>
           <Swiper
             autoplay
@@ -176,23 +165,17 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
 
         </View>
-        
         <Text style={{ fontSize: 28, fontWeight: "bold", alignSelf: 'center', marginBottom: 20, color: 'black', marginTop: 10 }}>Popular Books</Text>
 
-        <View style={styles.containerr}>
-          {arr.map((book) => (
-            <TouchableOpacity
-              TouchableOpacity style={styles.main_view}
-              onPress={() => navigation.navigate('BookDetails', { Img: book.IMG, Name: book.NAME, Author: book.AUTHOR, Description: book.DESCRIPTION, Content: book.CONTENT })}
-            >
-              <Image source={{ url: book.IMG }} style={styles.Coverimg} />
+        <TouchableOpacity style={styles.main_view} onPress={() => navigation.navigate('BookDetails', { Img: img, Name: name, Author: author, Description: description, Content: content })}>
+          <Image source={{ url: img }} style={styles.Coverimg} />
 
-            </TouchableOpacity>
-          ))}
-        </View>
+        </TouchableOpacity>
+
 
       </ScrollView>
     </View>
+
   );
 };
 export default Home;
@@ -250,13 +233,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     color: '#ff8c00',
     marginRight: 25,
-  },
-  containerr: {
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
-
   },
   main_view: {
     height: HEIGHT,

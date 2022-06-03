@@ -16,6 +16,7 @@ const screenWidth = Dimensions.get('window').width;
 
 export default function BookOverview({ navigation, book, booksarray, setbook }) {
 
+
   const [arr, setarr] = useState([]);
 
   const [categoryy, setcategory] = useState('')

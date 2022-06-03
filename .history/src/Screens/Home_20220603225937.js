@@ -7,11 +7,12 @@ import { Entypo, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 
-import { db } from '../../firebase'
-import { collection, addDoc, getDocs, doc, setDoc, query, where } from "firebase/firestore"
+import { db } from "../../firebase";
+import { collection, addDoc, getDocs, doc, setDoc } from "firebase/firestore"
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import { Navigation } from 'swiper';
 
 
 const BooksList = {
@@ -34,10 +35,10 @@ const Home = ({ navigation }) => {
   const ReadBookFromDB = async () => {
     const q = query(collection(db, "books"))
     const querySnapshot = await getDocs(q);
-
     setarr([])
 
     querySnapshot.forEach((doc) => {
+
 
       const { category, img, name, author, description, content } = doc.data();
       setimg(img)
@@ -47,18 +48,19 @@ const Home = ({ navigation }) => {
       setcontent(content)
 
       setarr(oldArray => [...oldArray, { IMG: img, NAME: name, AUTHOR: author, DESCRIPTION: description, CONTENT: content }])
-
-      //alert(doc.id)
+      //alert({)
       //console.warn();
 
       //setarr([...arr,{NAME: doc.id}])
       //setarr(oldArray => [...oldArray,{NAME: doc.id}])
+
     });
   }
-
+  // {IMG: img, NAME : name, AUTHOR: author,DESCRIPTION: description, CONTENT: content}
   useEffect(() => {
     ReadBookFromDB()
   }, []);
+
 
   return (
     <View style={styles.mainview}>
@@ -67,7 +69,7 @@ const Home = ({ navigation }) => {
         style={{ height: "7%", marginBottom: 10 }}
       >
       </LinearGradient>
-      <ScrollView>
+      <ScrollView style={styles.container}>
         <View style={styles.sliderContainer}>
           <Swiper
             autoplay
@@ -176,11 +178,11 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
 
         </View>
-        
         <Text style={{ fontSize: 28, fontWeight: "bold", alignSelf: 'center', marginBottom: 20, color: 'black', marginTop: 10 }}>Popular Books</Text>
 
-        <View style={styles.containerr}>
+        <View style={styles.container}>
           {arr.map((book) => (
+
             <TouchableOpacity
               TouchableOpacity style={styles.main_view}
               onPress={() => navigation.navigate('BookDetails', { Img: book.IMG, Name: book.NAME, Author: book.AUTHOR, Description: book.DESCRIPTION, Content: book.CONTENT })}
@@ -188,11 +190,14 @@ const Home = ({ navigation }) => {
               <Image source={{ url: book.IMG }} style={styles.Coverimg} />
 
             </TouchableOpacity>
+            
           ))}
         </View>
 
+
       </ScrollView>
     </View>
+
   );
 };
 export default Home;
@@ -250,13 +255,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     color: '#ff8c00',
     marginRight: 25,
-  },
-  containerr: {
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
-
   },
   main_view: {
     height: HEIGHT,

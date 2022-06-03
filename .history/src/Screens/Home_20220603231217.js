@@ -176,23 +176,26 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
 
         </View>
-        
+
         <Text style={{ fontSize: 28, fontWeight: "bold", alignSelf: 'center', marginBottom: 20, color: 'black', marginTop: 10 }}>Popular Books</Text>
 
         <View style={styles.containerr}>
           {arr.map((book) => (
+
             <TouchableOpacity
               TouchableOpacity style={styles.main_view}
               onPress={() => navigation.navigate('BookDetails', { Img: book.IMG, Name: book.NAME, Author: book.AUTHOR, Description: book.DESCRIPTION, Content: book.CONTENT })}
             >
               <Image source={{ url: book.IMG }} style={styles.Coverimg} />
 
-            </TouchableOpacity>
+            </TouchableOpacity
           ))}
         </View>
 
+
       </ScrollView>
     </View>
+
   );
 };
 export default Home;
