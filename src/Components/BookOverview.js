@@ -43,6 +43,8 @@ export default function BookOverview( { navigation, book } ) {
       <Image source ={{url:img}} style={styles.Coverimg}/>
       
     </TouchableOpacity>
+
+    
   )
 }
 
