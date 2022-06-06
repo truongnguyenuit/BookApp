@@ -7,6 +7,7 @@ import { withTheme } from 'react-native-paper';
 import LikeFilter from '../Components/LikeFilter'
 
 const Like = ({ navigation }) => {
+  console.log("like opages")
   const [booksArray, setBooksArray] = useState('')
 
 

@@ -12,10 +12,6 @@ import 'firebase/compat/firestore';
 const HEIGHT = 300, WIDTH = 200;
 const screenWidth = Dimensions.get('window').width;
 
-var userUID;
-var user = firebase.auth().currentUser;
-if (user)
-  userUID = user.uid
 export default function BookOverview({ navigation }) {
 
 
@@ -29,12 +25,15 @@ export default function BookOverview({ navigation }) {
   const [Content, setcontent] = useState('')
 
   const ReadBookFromDB = async () => {
+    var userUID;
+    var user = firebase.auth().currentUser;
+    if (user)
+      userUID = user.uid
     const q = query(collection(db, "likes"), where("UID", "==", userUID))
     const querySnapshot = await getDocs(q);
     setarr([])
 
     querySnapshot.forEach((doc) => {
-
 
       const { img, name, author, description, content } = doc.data();
       setimg(img)
@@ -50,17 +49,11 @@ export default function BookOverview({ navigation }) {
       //setarr(oldArray => [...oldArray,{NAME: doc.id}])
 
     });
-
-
   }
-  // {IMG: img, NAME : name, AUTHOR: author,DESCRIPTION: description, CONTENT: content}
   useEffect(() => {
     ReadBookFromDB()
   }, []);
 
-
-
-  // { Img: Img, Name: Name, Author: Author, Description: Description, Content: Content }
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -100,6 +93,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignSelf: 'center',
   },
-  
+
 })
 // ,{ Img:img, Name:name, Author: author, Description: description, Content: content}

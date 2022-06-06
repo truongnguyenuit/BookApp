@@ -165,9 +165,10 @@ const Home = ({ navigation }) => {
             <Text style={styles.categoryBtnTxt}>History</Text>
           </TouchableOpacity>
 
+
           <TouchableOpacity
             style={styles.categoryBtn}
-            onPress={() => navigation.navigate('Like', { navigation: navigation })}
+            onPress={() => navigation.navigate('Like')}
           >
             <View style={styles.categoryIcon}>
               <Entypo name="star" size={35} color='#FF8C00' />
@@ -175,7 +176,7 @@ const Home = ({ navigation }) => {
             <Text style={styles.categoryBtnTxt}>Favourite</Text>
           </TouchableOpacity>
 
-        </View>
+       </View>
         
         <Text style={{ fontSize: 28, fontWeight: "bold", alignSelf: 'center', marginBottom: 20, color: 'black', marginTop: 10 }}>Popular Books</Text>
 
