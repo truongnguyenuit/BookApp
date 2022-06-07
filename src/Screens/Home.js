@@ -181,9 +181,10 @@ const Home = ({ navigation }) => {
         <Text style={{ fontSize: 28, fontWeight: "bold", alignSelf: 'center', marginBottom: 20, color: 'black', marginTop: 10 }}>Popular Books</Text>
 
         <View style={styles.containerr}>
-          {arr.map((book) => (
+          {arr.map((book,key) => (
             <TouchableOpacity
               TouchableOpacity style={styles.main_view}
+              key={key}
               onPress={() => navigation.navigate('BookDetails', { Img: book.IMG, Name: book.NAME, Author: book.AUTHOR, Description: book.DESCRIPTION, Content: book.CONTENT })}
             >
               <Image source={{ url: book.IMG }} style={styles.Coverimg} />
@@ -261,7 +262,7 @@ const styles = StyleSheet.create({
   },
   main_view: {
     height: HEIGHT,
-    width: screenWidth / 2 - 8,
+    width: screenWidth/2- 8,
     marginTop: 5,
     marginLeft: 5,
 

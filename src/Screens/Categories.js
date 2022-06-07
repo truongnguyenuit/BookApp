@@ -7,7 +7,7 @@ const Categories = ({ navigation }) => {
   
   
   return (
-    <View style={styles.container}>
+    <View>
       <LinearGradient
         colors={['#ff8c00', '#ff8c00']}
         style={{ height: "20%" }}
@@ -152,7 +152,7 @@ const Categories = ({ navigation }) => {
 export default Categories
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    
   },
   title: {
     flexDirection: 'row',

@@ -32,7 +32,6 @@ export default function BookOverview({ navigation, book, booksarray, setbook }) 
 
     querySnapshot.forEach((doc) => {
 
-
       const { category, img, name, author, description, content } = doc.data();
       setimg(img)
       setname(name)
@@ -63,9 +62,10 @@ export default function BookOverview({ navigation, book, booksarray, setbook }) 
   return (
     <ScrollView>
       <View style={styles.container}>
-        {arr.map((book) => (
+        {arr.map((book, key) => (
 
           <TouchableOpacity
+            key={key}
             TouchableOpacity style={styles.main_view}
             onPress={() => navigation.navigate('BookDetails', { Img: book.IMG, Name: book.NAME, Author: book.AUTHOR, Description: book.DESCRIPTION, Content: book.CONTENT })}
           >

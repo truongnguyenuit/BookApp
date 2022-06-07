@@ -8,10 +8,8 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
-
 const HEIGHT= 300, WIDTH = 200;
 const screenWidth= Dimensions.get('window').width;
-
 export default function BookOverview( { navigation, book } ) {
   const [img, setimg] = useState('')
   const [name, setname] = useState('') 

@@ -57,9 +57,10 @@ export default function BookOverview({ navigation }) {
   return (
     <ScrollView>
       <View style={styles.container}>
-        {arr.map((book) => (
+        {arr.map((book, key) => (
 
           <TouchableOpacity
+            key={key}
             TouchableOpacity style={styles.main_view}
             onPress={() => navigation.navigate('BookDetails', { Img: book.IMG, Name: book.NAME, Author: book.AUTHOR, Description: book.DESCRIPTION, Content: book.CONTENT })}
           >
