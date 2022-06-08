@@ -1,52 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, Dimensions, StyleSheet, ImageBackground, TouchableOpacity, ScrollView,Image } from "react-native";
+import { Text, View, Dimensions, StyleSheet, ImageBackground, TouchableOpacity } from "react-native";
 import SearchBar from "../Components/SearchBar";
 import BookOverview from "../Components/BookOverview";
 import { TextInput } from "react-native-gesture-handler";
 import { AntDesign } from "@expo/vector-icons";
-
-import { db } from '../../firebase'
-import { collection, addDoc, getDocs, doc, setDoc, query, where } from "firebase/firestore"
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
-
-const HEIGHT = 300, WIDTH = 200;
-const screenWidth = Dimensions.get('window').width;
 export default function Search({ navigation }) {
   // const [BookName, setBookName] = useState('')
-  const [bookname, setbookname] = useState('')
-  const [bookauthor, setbookauthor] = useState('')
-  const [bookcategory, setbookcategory] = useState('')
-  const [arr, setarr] = useState([]);
-
-  const [categoryy, setcategory] = useState('')
-  const [Img, setimg] = useState('')
-  const [Name, setname] = useState('')
-  const [Author, setauthor] = useState('')
-  const [Description, setdescription] = useState('')
-  const [Content, setcontent] = useState('')
-  const ReadBookFromDB = async (item, value) => {
-    console.log(item)
-    console.log(value)
-    const q = query(collection(db, "books"), where(item, "==", value))
-    
-    const querySnapshot = await getDocs(q);
-    
-    setarr([])
-    
-    querySnapshot.forEach((doc) => {
-      console.log("1")
-      const { category, img, name, author, description, content } = doc.data();
-      setimg(img)
-      setname(name)
-      setauthor(author)
-      setdescription(description)
-      setcontent(content)
-
-      setarr(oldArray => [...oldArray, { IMG: img, NAME: name, AUTHOR: author, DESCRIPTION: description, CONTENT: content }])
-    });
-  }
+  const [bookk, setbookk] = useState('')
   return (
     <View style={{ marginTop: 20 }}>
 
@@ -55,13 +15,12 @@ export default function Search({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="Search Books Name ..."
-          value={bookname}
-          onChangeText={text => setbookname(text)}
+          value={bookk}
+          onChangeText={text => setbookk(text)}
         />
         <TouchableOpacity
           style={styles.button}
-          onPress={() => ReadBookFromDB("name", bookname)}
-          //onPress={()=>console.log(bookname)}
+          onPress={() => setname(bookk)}
         >
           <Text style={styles.buttonText}>Search</Text>
         </TouchableOpacity>
@@ -72,12 +31,12 @@ export default function Search({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="Search Author..."
-          value={bookauthor}
-          onChangeText={text => setbookauthor(text)}
+          value={bookk}
+          onChangeText={text => setbookk(text)}
         />
         <TouchableOpacity
           style={styles.button}
-          onPress={() => ReadBookFromDB("author",bookauthor)}
+          onPress={() => setname(bookk)}
         >
           <Text style={styles.buttonText}>Search</Text>
         </TouchableOpacity>
@@ -87,33 +46,17 @@ export default function Search({ navigation }) {
         <AntDesign name="search1" style={styles.Icon} />
         <TextInput
           style={styles.input}
-          placeholder="Search Books Category..."
-          value={bookcategory}
-          onChangeText={text => setbookcategory(text)}
+          placeholder="Search Books..."
+          value={bookk}
+          onChangeText={text => setbookk(text)}
         />
         <TouchableOpacity
           style={styles.button}
-          onPress={() => ReadBookFromDB("category",bookcategory)}
+          onPress={() => setname(bookk)}
         >
           <Text style={styles.buttonText}>Search</Text>
         </TouchableOpacity>
       </View>
-
-      <ScrollView>
-        <View style={styles.container}>
-          {arr.map((book, key) => (
-
-            <TouchableOpacity
-              key={key}
-              TouchableOpacity style={styles.main_view}
-              onPress={() => navigation.navigate('BookDetails', { Img: book.IMG, Name: book.NAME, Author: book.AUTHOR, Description: book.DESCRIPTION, Content: book.CONTENT })}
-            >
-              <Image source={{ url: book.IMG }} style={styles.Coverimg} />
-
-            </TouchableOpacity>
-          ))}
-        </View>
-      </ScrollView>
 
       {/* <SearchBar book={BookName} setname={setBookName} navigation={navigation} />  */}
 
@@ -192,25 +135,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white'
 
-  },
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
-
-  },
-  main_view: {
-    height: HEIGHT,
-    width: screenWidth / 2 - 8,
-    marginTop: 5,
-    marginLeft: 5,
-
-  },
-  Coverimg: {
-    width: "100%",
-    height: "100%",
-    borderRadius: 10,
-    alignSelf: 'center',
   }
 })

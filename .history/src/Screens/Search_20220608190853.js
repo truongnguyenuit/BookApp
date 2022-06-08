@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, Dimensions, StyleSheet, ImageBackground, TouchableOpacity, ScrollView,Image } from "react-native";
+import { Text, View, Dimensions, StyleSheet, ImageBackground, TouchableOpacity, ScrollView } from "react-native";
 import SearchBar from "../Components/SearchBar";
 import BookOverview from "../Components/BookOverview";
 import { TextInput } from "react-native-gesture-handler";
@@ -29,8 +29,8 @@ export default function Search({ navigation }) {
   const ReadBookFromDB = async (item, value) => {
     console.log(item)
     console.log(value)
-    const q = query(collection(db, "books"), where(item, "==", value))
-    
+    const q = query(collection(db, "books"), where("name", "==", value))
+    console.log('1')
     const querySnapshot = await getDocs(q);
     
     setarr([])
